@@ -13,7 +13,6 @@ class PageViewScreen extends StatefulWidget {
 
 class _PageViewScreenState extends State<PageViewScreen> {
   
-  //final _pageController = PageController();
 
   int _currentPageIndex = 0;
   final int _pageCounter = 3;

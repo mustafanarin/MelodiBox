@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:melodi_box/ui/views/home_page.dart';
-import 'package:melodi_box/ui/views/opening_screen_one.dart';
-import 'package:melodi_box/ui/views/opening_screen_three.dart';
-import 'package:melodi_box/ui/views/opening_screen_two.dart';
 import 'package:melodi_box/ui/views/page_view.dart';
-import 'package:melodi_box/ui/views/tab_view.dart';
+
 
 void main() {
   runApp(const MyApp());

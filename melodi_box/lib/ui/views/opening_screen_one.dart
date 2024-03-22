@@ -4,7 +4,8 @@ import 'package:flutter/widgets.dart';
 
 class OpeningScreenOne extends StatelessWidget {
   const OpeningScreenOne({super.key});
-
+  
+  final String _appNameText = "MelodiBox";
   final String _imagePath = "assets/images/radyo.png";
   final String _presentationText = "Sözsüz müziklerin keyfini çıkarabileceğiniz bir uygulama ile karşınızdayız! Bu uygulama, kullanıcıların favori enstrümantal parçaları keşfetmelerini sağlar.";
 
@@ -20,7 +21,7 @@ class OpeningScreenOne extends StatelessWidget {
               const Spacer(flex: 10,),
               Expanded(flex:30,child: FirstScreenImage(path: _imagePath)),
               const Spacer(flex: 2,),
-              const MelodiBoxText(),
+              MelodiBoxText(text: _appNameText,),
               const Spacer(flex: 2,),
               PresentationText(text: _presentationText),
               const Spacer(flex: 35,)
@@ -35,11 +36,12 @@ class OpeningScreenOne extends StatelessWidget {
 class MelodiBoxText extends StatelessWidget {
   const MelodiBoxText({
     super.key,
+    required this.text,
   });
-
+  final String text; 
   @override
   Widget build(BuildContext context) {
-    return Text("MelodiBox",style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+    return Text(text,style: Theme.of(context).textTheme.headlineLarge?.copyWith(
       fontWeight: FontWeight.bold,
     ),);
   }
