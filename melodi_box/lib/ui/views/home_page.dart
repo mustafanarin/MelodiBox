@@ -47,46 +47,63 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           children: [
-            const TextField(decoration: InputDecoration(
-                hintText: _textFieldHint,
-                suffixIcon: Icon(Icons.search_outlined),
-              ),
-            ),
-            const SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _EnsturmanButton(textGitar: _textBateri),
-        _EnsturmanButton(textGitar: _textGitar),
-        _EnsturmanButton(textGitar: _textKeman),
-        _EnsturmanButton(textGitar: _textKlarnet),
-        _EnsturmanButton(textGitar: _textPiyano),
-        _EnsturmanButton(textGitar: _textSaz),
-      ],
-    ),
-            ),
+            _TextField(),
+            _RowButtonsCatagory(),
             const Row(children: [_TitlePageText(title: _title),Spacer()],),
-            Expanded(
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount:2,
-                        childAspectRatio: 1/1.5
-                      ),
-                      itemCount: _instruments.length,
-                      itemBuilder: (context,index) {
-                        return GestureDetector(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(instrument: _instruments[index])));
-                          },
-                          child: _CardDesign(model: _instruments[index]));
-                      }),
-                  )
+            Expanded( child: _GridViewBuilder(instruments: _instruments),)
           ],
         ),
       ),
     );
+  }
+
+  TextField _TextField() {
+    return const TextField(decoration: InputDecoration(hintText: _textFieldHint,
+              suffixIcon: Icon(Icons.search_outlined),),);
+  }
+
+  SingleChildScrollView _RowButtonsCatagory() {
+    return const SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+      _EnsturmanButton(textGitar: _textBateri),
+      _EnsturmanButton(textGitar: _textGitar),
+      _EnsturmanButton(textGitar: _textKeman),
+      _EnsturmanButton(textGitar: _textKlarnet),
+      _EnsturmanButton(textGitar: _textPiyano),
+      _EnsturmanButton(textGitar: _textSaz),
+    ],
+  ),
+          );
+  }
+}
+
+class _GridViewBuilder extends StatelessWidget {
+  const _GridViewBuilder({
+    super.key,
+    required List<Instrument> instruments,
+  }) : _instruments = instruments;
+
+  final List<Instrument> _instruments;
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      shrinkWrap: true,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount:2,
+        childAspectRatio: 1/1.5
+      ),
+      itemCount: _instruments.length,
+      itemBuilder: (context,index) {
+        return GestureDetector(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(instrument: _instruments[index])));
+          },
+          child: _CardDesign(model: _instruments[index]));
+      });
   }
 }
 
@@ -126,15 +143,21 @@ class _CardDesign extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(flex: 12,
+            Expanded(flex: 48,
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.4,
                 height: MediaQuery.of(context).size.width * 0.4,
                 child: Image.asset(_model.instrumentImagePath)),
             ),
-            Expanded(flex:4,child: Text(_model.songName,style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),)),
-            const Spacer(flex: 1),
-            Expanded(flex:2,child: Text(_model.instrumentName,style: Theme.of(context).textTheme.bodyMedium,)),
+            Expanded(flex:16,child: Text(_model.songName,style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),)),
+            const Spacer(flex: 4),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                 Expanded(flex:8,child: Text(_model.instrumentName,style: Theme.of(context).textTheme.bodyMedium,)),
+                 IconButton(onPressed: (){}, icon: const Icon(Icons.favorite_border_outlined))
+              ],
+            ),
              const Spacer(flex: 1)
           ],),
       ),

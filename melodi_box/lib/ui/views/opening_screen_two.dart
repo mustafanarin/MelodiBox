@@ -21,7 +21,7 @@ class OpeningScreenTwo extends StatelessWidget {
               const MelodiBoxText(),
               const Spacer(flex: 2,),
               PresentationText(text: _presentationText,),
-              const Spacer(flex: 25,)
+              const Spacer(flex: 35,)
             ],
           ),
         ),

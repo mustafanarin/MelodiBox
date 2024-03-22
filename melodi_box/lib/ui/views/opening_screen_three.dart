@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class OpeningScreenThree extends StatelessWidget {
   const OpeningScreenThree({super.key});
 
-  final String _imagePath = "assets/images/telefon.png";
+  final String _imagePath = "assets/images/mobil.png";
   final String _presentationText = "Binlerce enstrümantal parça içeren geniş bir müzik kütüphanesiyle, her zevke uygun bir şeyler bulabilirsiniz. Klasik müzikten caz ve elektronik müziğe kadar farklı türlerde birçok seçenek mevcuttur.";
 
   @override
@@ -21,7 +21,7 @@ class OpeningScreenThree extends StatelessWidget {
               const MelodiBoxText(),
               const Spacer(flex: 2,),
               PresentationText(text: _presentationText,),
-              const Spacer(flex: 25,)
+              const Spacer(flex: 35,)
             ],
           ),
         ),

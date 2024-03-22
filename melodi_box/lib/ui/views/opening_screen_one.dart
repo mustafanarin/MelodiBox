@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -12,17 +13,17 @@ class OpeningScreenOne extends StatelessWidget {
     return  Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding:  const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Spacer(flex: 10,),
-              Expanded(flex:30,child: FirstScreenImage(path: _imagePath,)),
+              Expanded(flex:30,child: FirstScreenImage(path: _imagePath)),
               const Spacer(flex: 2,),
               const MelodiBoxText(),
               const Spacer(flex: 2,),
-              PresentationText(text: _presentationText,),
-              const Spacer(flex: 25,)
+              PresentationText(text: _presentationText),
+              const Spacer(flex: 35,)
             ],
           ),
         ),

@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           systemOverlayStyle: SystemUiOverlayStyle.dark,
           centerTitle: true,
           iconTheme: IconThemeData(
-            size: 28
+            size: 30
           )
         ),
         tabBarTheme: const TabBarTheme(
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         bottomAppBarTheme: const BottomAppBarTheme(
            color: Color(0xffede0d4),
         ),
-        inputDecorationTheme: InputDecorationTheme(
+        inputDecorationTheme: const InputDecorationTheme(
            filled: true,
            fillColor: Colors.black12,
            border: InputBorder.none,
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xfff7ede2),
         useMaterial3: true,
       ),
-      home:  const HomePage(),
+      home:  const PageViewScreen(),
     );
   }
 }

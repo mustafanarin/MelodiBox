@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:melodi_box/ui/views/favorite_page.dart';
+import 'package:melodi_box/ui/views/home_page.dart';
 import 'package:melodi_box/ui/views/opening_screen_one.dart';
 import 'package:melodi_box/ui/views/opening_screen_three.dart';
+import 'package:melodi_box/ui/views/profile_page.dart';
 
 class TabView extends StatefulWidget {
   const TabView({super.key});
@@ -32,9 +35,9 @@ class _TabViewState extends State<TabView> {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
-            OpeningScreenThree(),
-            OpeningScreenOne(),
-            OpeningScreenThree()
+            HomePage(),
+            FavoritePage(),
+            ProfilePage()
           ],
         ),
       ));
