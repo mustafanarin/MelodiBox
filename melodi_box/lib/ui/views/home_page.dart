@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:melodi_box/data/entity/instrument.dart';
+import 'package:melodi_box/ui/views/detail_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -53,7 +54,17 @@ class _HomePageState extends State<HomePage> {
             ),
             const SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: _RowButtonsCatagory(textBateri: _textBateri, textGitar: _textGitar, textKeman: _textKeman, textKlarnet: _textKlarnet, textPiyano: _textPiyano, textSaz: _textSaz),
+              child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _EnsturmanButton(textGitar: _textBateri),
+        _EnsturmanButton(textGitar: _textGitar),
+        _EnsturmanButton(textGitar: _textKeman),
+        _EnsturmanButton(textGitar: _textKlarnet),
+        _EnsturmanButton(textGitar: _textPiyano),
+        _EnsturmanButton(textGitar: _textSaz),
+      ],
+    ),
             ),
             const Row(children: [_TitlePageText(title: _title),Spacer()],),
             Expanded(
@@ -65,7 +76,11 @@ class _HomePageState extends State<HomePage> {
                       ),
                       itemCount: _instruments.length,
                       itemBuilder: (context,index) {
-                        return _CardDesign(model: _instruments[index]);
+                        return GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(instrument: _instruments[index])));
+                          },
+                          child: _CardDesign(model: _instruments[index]));
                       }),
                   )
           ],
@@ -75,39 +90,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class _RowButtonsCatagory extends StatelessWidget {
-  const _RowButtonsCatagory({
-    super.key,
-    required String textBateri,
-    required String textGitar,
-    required String textKeman,
-    required String textKlarnet,
-    required String textPiyano,
-    required String textSaz,
-  }) : _textBateri = textBateri, _textGitar = textGitar, _textKeman = textKeman, _textKlarnet = textKlarnet, _textPiyano = textPiyano, _textSaz = textSaz;
 
-  final String _textBateri;
-  final String _textGitar;
-  final String _textKeman;
-  final String _textKlarnet;
-  final String _textPiyano;
-  final String _textSaz;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _EnsturmanButton(textGitar: _textBateri),
-        _EnsturmanButton(textGitar: _textGitar),
-        _EnsturmanButton(textGitar: _textKeman),
-        _EnsturmanButton(textGitar: _textKlarnet),
-        _EnsturmanButton(textGitar: _textPiyano),
-        _EnsturmanButton(textGitar: _textSaz),
-      ],
-    );
-  }
-}
 
 class _TitlePageText extends StatelessWidget {
   const _TitlePageText({
@@ -188,7 +171,7 @@ class InstrumentItems {
       Instrument(instrumentName: "Gitar", instrumentImagePath: "assets/images/gitar.png",
       songName: "Acının İlacı - Adamlar"),
       Instrument(instrumentName: "Keman", instrumentImagePath:"assets/images/keman.png",
-      songName: "Duydum ki unutmuşsun - Emel Sayın"),
+      songName: "Fairytale - Alexander Rybak"),
       Instrument(instrumentName: "Bateri", instrumentImagePath: "assets/images/bateri.png",
       songName: "Her şeyi yak - Duman"),
       Instrument(instrumentName: "Piyano", instrumentImagePath: "assets/images/piano.png",
